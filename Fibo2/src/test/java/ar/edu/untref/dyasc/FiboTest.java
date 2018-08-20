@@ -31,11 +31,13 @@ class FiboTest {
     @Test
     void testValido() {
         Fibo fibo = new Fibo();
+        long[] serie;
         String esperado;
         String obtenido;
         for (int i = 0; i <= maxValido; i++) {
             esperado = "Fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i);
-            obtenido = fibo.generarSerie(i);
+            serie = fibo.generarSerie(i);
+            obtenido = fibo.arrayAString(serie, true, true);
             Assert.assertEquals(esperado, obtenido);
         }
     }
