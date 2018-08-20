@@ -29,23 +29,54 @@ class FiboTest {
     }
 
     @Test
-    void testValido() {
+    void testHorizontalDirecta() {
+        compararSerie(true, true);
+    }
+
+    @Test
+    void testHorizontalInversa() {
+        compararSerie(true, false);
+    }
+
+    @Test
+    void testVerticalDirecta() {
+        compararSerie(false, true);
+    }
+
+    @Test
+    void testVerticalInversa() {
+        compararSerie(false, false);
+    }
+
+    private static void compararSerie(boolean horizontal, boolean directa) {
         Fibo fibo = new Fibo();
         long[] serie;
         String esperado;
         String obtenido;
         for (int i = 0; i <= maxValido; i++) {
-            esperado = "Fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i);
+            esperado = "Fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i, horizontal, directa);
             serie = fibo.generarSerie(i);
-            obtenido = fibo.arrayAString(serie, true, true);
+            obtenido = fibo.arrayAString(serie, horizontal, directa);
             Assert.assertEquals(esperado, obtenido);
         }
     }
 
-    private static String getSerieFibo(int n) {
+    private static String getSerieFibo(int n, boolean horizontal, boolean directa) {
+        String separador;
         StringBuilder resultado = new StringBuilder();
-        for (int i = 0; i < n; i++) {
-            resultado.append(" " + serie[i]);
+        if (horizontal) {
+            separador = " ";
+        } else {
+            separador = "\n";
+        }
+        if (directa) {
+            for (int i = 0; i < n; i++) {
+                resultado.append(separador + serie[i]);
+            }
+        } else {
+            for (int i = n - 1; i >= 0; i--) {
+                resultado.append(separador + serie[i]);
+            }
         }
         return resultado.toString();
     }
