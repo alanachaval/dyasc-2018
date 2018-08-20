@@ -1,5 +1,8 @@
 package ar.edu.untref.dyasc;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -48,6 +51,26 @@ class FiboTest {
         compararSerie(false, false);
     }
 
+    @Test
+    void testConsolaHorizontalDirecta() {
+        compararSerieConsola(true, true);
+    }
+
+    @Test
+    void testConsolaHorizontalInversa() {
+        compararSerieConsola(true, false);
+    }
+
+    @Test
+    void testConsolaVerticalDirecta() {
+        compararSerieConsola(false, true);
+    }
+
+    @Test
+    void testConsolaVerticalInversa() {
+        compararSerieConsola(false, false);
+    }
+
     private static void compararSerie(boolean horizontal, boolean directa) {
         Fibo fibo = new Fibo();
         long[] serie;
@@ -58,6 +81,31 @@ class FiboTest {
             serie = fibo.generarSerie(i);
             obtenido = fibo.arrayAString(serie, horizontal, directa);
             Assert.assertEquals(esperado, obtenido);
+        }
+    }
+
+    private static void compararSerieConsola(boolean horizontal, boolean directa) {
+        String[] args = new String[2];
+        args[0] = "-o=";
+        if (horizontal) {
+            args[0] += "h";
+        } else {
+            args[0] += "v";
+        }
+        if (directa) {
+            args[0] += "d";
+        } else {
+            args[0] += "i";
+        }
+        String esperado;
+        ByteArrayOutputStream byteArrayOutputStream;
+        for (int i = 0; i <= maxValido; i++) {
+            byteArrayOutputStream = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(byteArrayOutputStream));
+            esperado = "Fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i, horizontal, directa) + "\n";
+            args[1] = Integer.toString(i);
+            Program.main(args);
+            Assert.assertEquals(esperado, byteArrayOutputStream.toString());
         }
     }
 
