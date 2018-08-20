@@ -33,7 +33,7 @@ class FiboTest {
 		String esperado;
 		String obtenido;
 		for (int i = 0; i <= maxValido; i++) {
-			esperado = "Fibo<" + Integer.toString(i) + ">" + getSerieFibo(i);
+			esperado = "Fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i);
 			obtenido = Program.generarSerieFibo(i);
 			Assert.assertEquals(esperado, obtenido);
 		}

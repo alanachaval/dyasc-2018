@@ -15,7 +15,7 @@ public class Program {
     	long b = 1;
     	long temp = 0;
     	StringBuilder resultado = new StringBuilder();
-    	resultado.append("Fibo<" + Integer.toString(cantidadDeElementos) + ">");
+    	resultado.append("Fibo<" + Integer.toString(cantidadDeElementos) + ">:");
         
     	for(int i = 0; i < cantidadDeElementos; i++) {
     		resultado.append(" " + Long.toString(a));
