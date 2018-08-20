@@ -1,5 +1,8 @@
 package ar.edu.untref.dyasc;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -37,6 +40,21 @@ class FiboTest {
             esperado = "Fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i);
             obtenido = fibo.generarSerie(i);
             Assert.assertEquals(esperado, obtenido);
+        }
+    }
+    
+    @Test
+    void testConsola() {
+        String esperado;
+        String[] args = new String[1];
+        ByteArrayOutputStream byteArrayOutputStream;
+        for (int i = 0; i <= maxValido; i++) {
+            byteArrayOutputStream = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(byteArrayOutputStream));
+            esperado = "Fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i) + "\n";
+            args[0] = Integer.toString(i);
+            Program.main(args);
+            Assert.assertEquals(esperado, byteArrayOutputStream.toString());
         }
     }
 
