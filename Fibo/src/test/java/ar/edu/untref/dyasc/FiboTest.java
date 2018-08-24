@@ -32,17 +32,37 @@ class FiboTest {
     }
 
     @Test
+    void testEjemplo5() {
+        Fibo fibo = new Fibo();
+        String esperado;
+        String obtenido;
+        esperado = "fibo<5>: 0 1 1 2 3";
+        obtenido = fibo.generarSerie(5);
+        Assert.assertEquals(esperado, obtenido);
+    }
+
+    @Test
+    void testEjemplo8() {
+        Fibo fibo = new Fibo();
+        String esperado;
+        String obtenido;
+        esperado = "fibo<8>: 0 1 1 2 3 5 8 13";
+        obtenido = fibo.generarSerie(8);
+        Assert.assertEquals(esperado, obtenido);
+    }
+
+    @Test
     void testValido() {
         Fibo fibo = new Fibo();
         String esperado;
         String obtenido;
         for (int i = 0; i <= maxValido; i++) {
-            esperado = "Fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i);
+            esperado = "fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i);
             obtenido = fibo.generarSerie(i);
             Assert.assertEquals(esperado, obtenido);
         }
     }
-    
+
     @Test
     void testConsola() {
         String esperado;
@@ -51,7 +71,7 @@ class FiboTest {
         for (int i = 0; i <= maxValido; i++) {
             byteArrayOutputStream = new ByteArrayOutputStream();
             System.setOut(new PrintStream(byteArrayOutputStream));
-            esperado = "Fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i) + "\n";
+            esperado = "fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i);
             args[0] = Integer.toString(i);
             Program.main(args);
             Assert.assertEquals(esperado, byteArrayOutputStream.toString());

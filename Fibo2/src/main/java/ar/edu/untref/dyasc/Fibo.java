@@ -22,7 +22,7 @@ public class Fibo {
     public String arrayAString(long[] serie, boolean horizontal, boolean directa) {
         String separador;
         StringBuilder resultado = new StringBuilder();
-        resultado.append("Fibo<" + Integer.toString(serie.length) + ">:");
+        resultado.append("fibo<" + Integer.toString(serie.length) + ">:");
         if (horizontal) {
             separador = " ";
         } else {

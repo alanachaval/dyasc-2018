@@ -6,7 +6,7 @@ public class Program {
 
         Fibo fibo = new Fibo();
         String resultado = fibo.generarSerie(Integer.parseInt(args[0]));
-        System.out.println(resultado);
+        System.out.print(resultado);
 
     }
 
