@@ -34,7 +34,7 @@ class FiboTest {
     @Test
     void testEjemplovd5() {
         String[] args = new String[] { "-o=vd", "5" };
-        String esperado = "fibo<5>:\n0\n1\n1\n2\n3";
+        String esperado = "fibo<5>:\n0\n1\n1\n2\n3\n";
         ByteArrayOutputStream byteArrayOutputStream;
         byteArrayOutputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(byteArrayOutputStream));
@@ -45,7 +45,7 @@ class FiboTest {
     @Test
     void testEjemplohi8() {
         String[] args = new String[] { "-o=hi", "8" };
-        String esperado = "fibo<8>: 13 8 5 3 2 1 1 0";
+        String esperado = "fibo<8>: 13 8 5 3 2 1 1 0\n";
         ByteArrayOutputStream byteArrayOutputStream;
         byteArrayOutputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(byteArrayOutputStream));
@@ -56,7 +56,7 @@ class FiboTest {
     @Test
     void testEjemplovi8() {
         String[] args = new String[] { "-o=vi", "8" };
-        String esperado = "fibo<8>:\n13\n8\n5\n3\n2\n1\n1\n0";
+        String esperado = "fibo<8>:\n13\n8\n5\n3\n2\n1\n1\n0\n";
         ByteArrayOutputStream byteArrayOutputStream;
         byteArrayOutputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(byteArrayOutputStream));
@@ -67,7 +67,7 @@ class FiboTest {
     @Test
     void testEjemploxy8() {
         String[] args = new String[] { "-o=xy", "8" };
-        String esperado = "Opciones no validas.";
+        String esperado = "Opciones no validas.\n";
         ByteArrayOutputStream byteArrayOutputStream;
         byteArrayOutputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(byteArrayOutputStream));
@@ -78,7 +78,7 @@ class FiboTest {
     @Test
     void testEjemplo8() {
         String[] args = new String[] { "8" };
-        String esperado = "fibo<8>: 0 1 1 2 3 5 8 13";
+        String esperado = "fibo<8>: 0 1 1 2 3 5 8 13\n";
         ByteArrayOutputStream byteArrayOutputStream;
         byteArrayOutputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(byteArrayOutputStream));
@@ -157,7 +157,7 @@ class FiboTest {
         for (int i = 0; i <= maxValido; i++) {
             byteArrayOutputStream = new ByteArrayOutputStream();
             System.setOut(new PrintStream(byteArrayOutputStream));
-            esperado = "fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i, horizontal, directa);
+            esperado = "fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i, horizontal, directa) + "\n";
             args[1] = Integer.toString(i);
             Program.main(args);
             Assert.assertEquals(esperado, byteArrayOutputStream.toString());
