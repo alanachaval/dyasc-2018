@@ -39,6 +39,15 @@ public class WritterTest {
         compararArchivo(archivo, esperado);
     }
 
+    @Test
+    void testMensajeArchivo() throws Throwable {
+        String archivo = "salida.txt";
+        String esperado = "fibo<5>:\\n0\\n1\\n1\\n2\\n3\\n";
+        compararStream("fibo<5> guardado en salida.txt\n", () -> {
+            writter.escribirResultado(archivo, esperado);
+        });
+    }
+
     public static void compararStream(String esperado, Executable executable) throws Throwable {
         ByteArrayOutputStream byteArrayOutputStream;
         byteArrayOutputStream = new ByteArrayOutputStream();

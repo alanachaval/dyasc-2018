@@ -15,6 +15,7 @@ public class Writter {
                 file.createNewFile();
                 try (FileWriter fileWriter = new FileWriter(file)) {
                     fileWriter.write(resultado);
+                    System.out.println(resultado.split(":")[0] + " guardado en " + archivo);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

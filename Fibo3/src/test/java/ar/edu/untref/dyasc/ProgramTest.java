@@ -7,7 +7,9 @@ public class ProgramTest {
     // Fibo3
     @Test
     void testEjemplovdsalidatxt5() throws Throwable {
-        Program.main(new String[] { "-o=vd", "-f=salida.txt", "5" });
+        WritterTest.compararStream("fibo<5> guardado en salida.txt\n", () -> {
+            Program.main(new String[] { "-o=vd", "-f=salida.txt", "5" });
+        });
         WritterTest.compararArchivo("salida.txt", "fibo<5>:\n0\n1\n1\n2\n3");
     }
     
@@ -20,7 +22,9 @@ public class ProgramTest {
     
     @Test
     void testEjemplovdsalidatxts5() throws Throwable {
-        Program.main(new String[] { "-o=vd", "-f=salida.txt", "-m=s", "5" });
+        WritterTest.compararStream("fibo<5> guardado en salida.txt\n", () -> {
+            Program.main(new String[] { "-o=vd", "-f=salida.txt", "-m=s", "5" });
+        });
         WritterTest.compararArchivo("salida.txt", "fibo<5>:\n7");
     }
 
