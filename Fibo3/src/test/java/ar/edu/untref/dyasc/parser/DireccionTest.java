@@ -23,17 +23,17 @@ public class DireccionTest {
     }
 
     @Test
-    void testConsolaHorizontalInversa() throws OpcionInvalidaException {
+    void testHorizontalInversa() throws OpcionInvalidaException {
         comparar("hi", true, false);
     }
 
     @Test
-    void testConsolaVerticalDirecta() throws OpcionInvalidaException {
+    void testVerticalDirecta() throws OpcionInvalidaException {
         comparar("vd", false, true);
     }
 
     @Test
-    void testConsolaVerticalInversa() throws OpcionInvalidaException {
+    void testVerticalInversa() throws OpcionInvalidaException {
         comparar("vi", false, false);
     }
 
