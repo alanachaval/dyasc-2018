@@ -12,55 +12,35 @@ public class ProgramTest {
     void testEjemplovd5() {
         String[] args = new String[] { "-o=vd", "5" };
         String esperado = "fibo<5>:\n0\n1\n1\n2\n3\n";
-        ByteArrayOutputStream byteArrayOutputStream;
-        byteArrayOutputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(byteArrayOutputStream));
-        Program.main(args);
-        Assert.assertEquals(esperado, byteArrayOutputStream.toString());
+        compararStream(args, esperado);
     }
 
     @Test
     void testEjemplohi8() {
         String[] args = new String[] { "-o=hi", "8" };
         String esperado = "fibo<8>: 13 8 5 3 2 1 1 0\n";
-        ByteArrayOutputStream byteArrayOutputStream;
-        byteArrayOutputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(byteArrayOutputStream));
-        Program.main(args);
-        Assert.assertEquals(esperado, byteArrayOutputStream.toString());
+        compararStream(args, esperado);
     }
 
     @Test
     void testEjemplovi8() {
         String[] args = new String[] { "-o=vi", "8" };
         String esperado = "fibo<8>:\n13\n8\n5\n3\n2\n1\n1\n0\n";
-        ByteArrayOutputStream byteArrayOutputStream;
-        byteArrayOutputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(byteArrayOutputStream));
-        Program.main(args);
-        Assert.assertEquals(esperado, byteArrayOutputStream.toString());
+        compararStream(args, esperado);
     }
 
     @Test
     void testEjemploxy8() {
         String[] args = new String[] { "-o=xy", "8" };
         String esperado = "Opciones no validas.\n";
-        ByteArrayOutputStream byteArrayOutputStream;
-        byteArrayOutputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(byteArrayOutputStream));
-        Program.main(args);
-        Assert.assertEquals(esperado, byteArrayOutputStream.toString());
+        compararStream(args, esperado);
     }
 
     @Test
     void testEjemplo8() {
         String[] args = new String[] { "8" };
         String esperado = "fibo<8>: 0 1 1 2 3 5 8 13\n";
-        ByteArrayOutputStream byteArrayOutputStream;
-        byteArrayOutputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(byteArrayOutputStream));
-        Program.main(args);
-        Assert.assertEquals(esperado, byteArrayOutputStream.toString());
+        compararStream(args, esperado);
     }
 
     @Test
@@ -83,7 +63,15 @@ public class ProgramTest {
         compararSerieConsola(false, false);
     }
 
-    private static void compararSerieConsola(boolean horizontal, boolean directa) {
+    private void compararStream(String[] args, String esperado) {
+        ByteArrayOutputStream byteArrayOutputStream;
+        byteArrayOutputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(byteArrayOutputStream));
+        Program.main(args);
+        Assert.assertEquals(esperado, byteArrayOutputStream.toString());        
+    }
+    
+    private void compararSerieConsola(boolean horizontal, boolean directa) {
         String[] args = new String[2];
         args[0] = "-o=";
         if (horizontal) {
