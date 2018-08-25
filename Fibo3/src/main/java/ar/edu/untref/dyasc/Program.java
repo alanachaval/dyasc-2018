@@ -22,7 +22,8 @@ public class Program {
         long[] serie = fibo.generarSerie(parametros.getCantidadDeElementos());
         Formatter formatter = new Formatter();
         String resultado = formatter.arrayAString(serie, parametros.isHorizontal(), parametros.isDirecta(), parametros.isLista());
-        System.out.println(resultado);
+        Writter writter = new Writter();
+        writter.escribirResultado(parametros.getArchivo(), resultado);
 
     }
 
