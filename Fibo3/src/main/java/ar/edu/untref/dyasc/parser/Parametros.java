@@ -6,6 +6,7 @@ public class Parametros {
     private boolean horizontal;
     private boolean directa;
     private boolean lista;
+    private String archivo;
 
     public Parametros() {
         horizontal = true;
@@ -43,6 +44,14 @@ public class Parametros {
 
     public void setLista(boolean lista) {
         this.lista = lista;
+    }
+
+    public String getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(String archivo) {
+        this.archivo = archivo;
     }
 
 }

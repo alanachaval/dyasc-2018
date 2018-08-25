@@ -9,6 +9,7 @@ public class Parser {
         Map<String, IParametro> parsers = new HashMap<String, IParametro>();
         parsers.put("-o", new Direccion());
         parsers.put("-m", new Modo());
+        parsers.put("-f", new Archivo());
         Parametros resultado = new Parametros();
         String[] parametro;
         for (int i = 0; i < args.length; i++) {
