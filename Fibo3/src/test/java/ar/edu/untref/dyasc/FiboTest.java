@@ -128,13 +128,14 @@ class FiboTest {
 
     private static void compararSerie(boolean horizontal, boolean directa) {
         Fibo fibo = new Fibo();
+        Formatter formatter = new Formatter();
         long[] serie;
         String esperado;
         String obtenido;
         for (int i = 0; i <= maxValido; i++) {
             esperado = "fibo<" + Integer.toString(i) + ">:" + getSerieFibo(i, horizontal, directa);
             serie = fibo.generarSerie(i);
-            obtenido = fibo.arrayAString(serie, horizontal, directa);
+            obtenido = formatter.arrayAString(serie, horizontal, directa, true);
             Assert.assertEquals(esperado, obtenido);
         }
     }

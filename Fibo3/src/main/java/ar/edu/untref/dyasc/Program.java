@@ -20,7 +20,8 @@ public class Program {
 
         Fibo fibo = new Fibo();
         long[] serie = fibo.generarSerie(parametros.getCantidadDeElementos());
-        String resultado = fibo.arrayAString(serie, parametros.isHorizontal(), parametros.isDirecta());
+        Formatter formatter = new Formatter();
+        String resultado = formatter.arrayAString(serie, parametros.isHorizontal(), parametros.isDirecta(), true);
         System.out.println(resultado);
 
     }
