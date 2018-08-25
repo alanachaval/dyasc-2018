@@ -5,10 +5,12 @@ public class Parametros {
     private int cantidadDeElementos;
     private boolean horizontal;
     private boolean directa;
+    private boolean lista;
 
     public Parametros() {
         horizontal = true;
         directa = true;
+        lista = true;
     }
 
     public int getCantidadDeElementos() {
@@ -33,6 +35,14 @@ public class Parametros {
 
     public void setDirecta(boolean directa) {
         this.directa = directa;
+    }
+
+    public boolean isLista() {
+        return lista;
+    }
+
+    public void setLista(boolean lista) {
+        this.lista = lista;
     }
 
 }
