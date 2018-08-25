@@ -4,6 +4,27 @@ import org.junit.jupiter.api.Test;
 
 public class ProgramTest {
 
+    // Fibo3
+    @Test
+    void testEjemplovdsalidatxt5() throws Throwable {
+        Program.main(new String[] { "-o=vd", "-f=salida.txt", "5" });
+        WritterTest.compararArchivo("salida.txt", "fibo<5>:\n0\n1\n1\n2\n3");
+    }
+    
+    @Test
+    void testEjemplovds5() throws Throwable {
+        WritterTest.compararStream("fibo<5>: 7\n", () -> {
+            Program.main(new String[] { "-o=hd", "-m=s", "5" });
+        });
+    }
+    
+    @Test
+    void testEjemplovdsalidatxts5() throws Throwable {
+        Program.main(new String[] { "-o=vd", "-f=salida.txt", "-m=s", "5" });
+        WritterTest.compararArchivo("salida.txt", "fibo<5>:\n7");
+    }
+
+    // Fibo2
     @Test
     void testEjemplovd5() throws Throwable {
         WritterTest.compararStream("fibo<5>:\n0\n1\n1\n2\n3\n", () -> {
@@ -32,10 +53,18 @@ public class ProgramTest {
         });
     }
 
+    // Fibo
     @Test
     void testEjemplo8() throws Throwable {
         WritterTest.compararStream("fibo<8>: 0 1 1 2 3 5 8 13\n", () -> {
             Program.main(new String[] { "8" });
+        });
+    }
+
+    @Test
+    void testEjemplo5() throws Throwable {
+        WritterTest.compararStream("fibo<5>: 0 1 1 2 3\n", () -> {
+            Program.main(new String[] { "5" });
         });
     }
 

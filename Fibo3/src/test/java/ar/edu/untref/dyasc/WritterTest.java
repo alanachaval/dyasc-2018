@@ -33,7 +33,10 @@ public class WritterTest {
 
     @Test
     void testArchivo() throws OpcionInvalidaException, IOException {
-        compararArchivo("salida.txt", "fibo<5>:\\n0\\n1\\n1\\n2\\n3\\n");
+        String archivo = "salida.txt";
+        String esperado = "fibo<5>:\\n0\\n1\\n1\\n2\\n3\\n";
+        writter.escribirResultado(archivo, esperado);
+        compararArchivo(archivo, esperado);
     }
 
     public static void compararStream(String esperado, Executable executable) throws Throwable {
@@ -44,13 +47,12 @@ public class WritterTest {
         Assert.assertEquals(esperado, byteArrayOutputStream.toString());
     }
 
-    private void compararArchivo(String archivo, String esperado) throws IOException {
-        writter.escribirResultado(archivo, esperado);
+    public static void compararArchivo(String archivo, String esperado) throws IOException {
         String obtenido = readFile(archivo, Charset.defaultCharset());
         Assert.assertEquals(esperado, obtenido);
     }
 
-    private String readFile(String path, Charset encoding) throws IOException {
+    private static String readFile(String path, Charset encoding) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
     }
