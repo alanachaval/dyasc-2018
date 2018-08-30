@@ -17,7 +17,7 @@ public class Formatter {
         if (horizontal) {
             separador = " ";
         } else {
-            separador = "\n";
+        	separador = System.lineSeparator();
         }
         if (directa) {
             for (int i = 0; i < serie.length; i++) {

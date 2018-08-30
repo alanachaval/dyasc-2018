@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 public class FormatterTest {
 
+	public static final String LINE_SEPARATOR = System.lineSeparator();
+	
     private static final String[] SERIE = new String[] { "0", "1", "1", "2", "3", "5", "8", "13", "21", "34", "55", "89", "144", "233", "377",
                 "610", "987", "1597", "2584", "4181", "6765", "10946", "17711", "28657", "46368", "75025", "121393",
                 "196418", "317811", "514229", "832040", "1346269", "2178309", "3524578", "5702887", "9227465",
@@ -59,7 +61,7 @@ public class FormatterTest {
         if (horizontal) {
             separador = " ";
         } else {
-            separador = "\n";
+            separador = LINE_SEPARATOR;
         }
         if (directa) {
             for (int i = 0; i < n; i++) {
