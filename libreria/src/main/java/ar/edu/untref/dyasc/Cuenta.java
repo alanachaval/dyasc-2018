@@ -6,13 +6,9 @@ import java.util.List;
 public class Cuenta {
 
     private List<Compra> compras;
-    
-    public Cuenta() {
-        this(new ArrayList<Compra>());
-    }
 
-    public Cuenta(List<Compra> compras) {
-        this.compras = compras;
+    public Cuenta() {
+        this.compras = new ArrayList<Compra>();
     }
 
     public void AgregarCompra(Compra compra) {

@@ -8,15 +8,17 @@ import java.util.Map;
 public class Libreria {
 
     private Map<String, Cliente> clientes;
-    private Year anioActual;
-    private Month mesActual;
     
     public Libreria() {
         clientes = new HashMap<String, Cliente>();
     }
     
-    public void Vender(String direccion, Producto producto) {
-        Compra compra = new Compra(producto, anioActual, mesActual);
+    public void RegistrarCliente(String direccion) {
+        clientes.put(direccion, new Cliente(new Cuenta(), direccion));
+    }
+    
+    public void Vender(String direccion, Producto producto, Year anio, Month mes) {
+        Compra compra = new Compra(producto, anio, mes);
         clientes.get(direccion).getCuenta().AgregarCompra(compra);
     }
     
