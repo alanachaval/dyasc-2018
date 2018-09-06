@@ -8,29 +8,31 @@ import java.util.Map;
 public class Libreria {
 
     private Map<String, Cliente> clientes;
+    private RepositorioDeProductos repositorio;
     
-    public Libreria() {
+    public Libreria(RepositorioDeProductos repositorio) {
         clientes = new HashMap<String, Cliente>();
+        repositorio = repositorio;
     }
     
     public void RegistrarCliente(String direccion) {
         clientes.put(direccion, new Cliente(new Cuenta(), direccion));
     }
     
-    public void Vender(String direccion, Producto producto, Year anio, Month mes) {
-        Compra compra = new Compra(producto, anio, mes);
+    public void Vender(String direccion, String producto, Year anio, Month mes) {
+        Compra compra = new Compra(repositorio.GetProducto(producto), anio, mes);
         clientes.get(direccion).getCuenta().AgregarCompra(compra);
     }
     
-    public void Subscribir(String direccion, Subscribible subscribible, Year anio) {
+    public void Subscribir(String direccion, String subscribible, Year anio) {
         for(Month mes : Month.values()) {
-            Subscripcion subscripcion = new Subscripcion(subscribible, anio, mes, Duracion.ANUAL);
+            Subscripcion subscripcion = new Subscripcion(repositorio.GetSubscribible(subscribible), anio, mes, Duracion.ANUAL);
             clientes.get(direccion).getCuenta().AgregarCompra(subscripcion);
         }
     }
     
-    public void Subscribir(String direccion, Subscribible subscribible, Year anio, Month mes) {
-        Subscripcion subscripcion = new Subscripcion(subscribible, anio, mes, Duracion.MENSUAL);
+    public void Subscribir(String direccion, String subscribible, Year anio, Month mes) {
+        Subscripcion subscripcion = new Subscripcion(repositorio.GetSubscribible(subscribible), anio, mes, Duracion.MENSUAL);
         clientes.get(direccion).getCuenta().AgregarCompra(subscripcion);
     }
     
