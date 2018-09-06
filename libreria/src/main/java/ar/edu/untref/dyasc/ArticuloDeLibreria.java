@@ -10,7 +10,7 @@ public class ArticuloDeLibreria extends Producto {
     
     @Override
     public float getPrecio() {
-        return precio * (1 + IVA);
+        return precio * (1.0f + IVA);
     }
 
 }
