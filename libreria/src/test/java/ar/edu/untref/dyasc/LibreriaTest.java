@@ -35,7 +35,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoTotalConUnaSuscripcion() {
+    void CalculoTotalConUnaSuscripcionMensual() {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Subscribible producto = new Subscribible("Gente", 50.0f, 4);
@@ -47,5 +47,20 @@ public class LibreriaTest {
         
         //50 * 0.95 * 4 = 190
         Assert.assertEquals(190.0f, cobro, Float.MIN_NORMAL);
+    }
+
+    @Test
+    void CalculoTotalConUnaSuscripcionAnual() {
+        RepositorioDeProductos repositorio = new RepositorioDeProductos();
+        Libreria libreria = new Libreria(repositorio);
+        Subscribible producto = new Subscribible("Gente", 50.0f, 4);
+        repositorio.RegistrarSubscribible(producto);
+        libreria.RegistrarCliente("direccion");
+        
+        libreria.Subscribir("direccion", "Gente", Year.of(2018));
+        float cobro = libreria.ObtenerCobro("direccion", Year.of(2018));
+        
+        //50 * 0.8 * 4 * 12 = 1920
+        Assert.assertEquals(1920.0f, cobro, Float.MIN_NORMAL);
     }
 }
