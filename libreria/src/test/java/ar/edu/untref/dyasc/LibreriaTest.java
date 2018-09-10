@@ -92,4 +92,43 @@ public class LibreriaTest {
 
         Assert.assertEquals(0.0f, cobro, Float.MIN_NORMAL);
     }
+
+    @Test
+    void CalculoMesConUnaCompraDeOtroCliente() {
+        RepositorioDeProductos repositorio = new RepositorioDeProductos();
+        Libreria libreria = new Libreria(repositorio);
+        Producto producto = new Producto("Principito", 50.0f);
+        repositorio.RegistrarProducto(producto);
+        libreria.RegistrarCliente("direccion");
+        libreria.RegistrarCliente("Otradireccion");
+
+        libreria.Vender("Otradireccion", "Principito", Year.of(2018), Month.SEPTEMBER);
+        float cobro = libreria.ObtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
+
+        Assert.assertEquals(0.0f, cobro, Float.MIN_NORMAL);
+    }
+
+    @Test
+    void CalculoMesConUnaCompraDeVariosClientes() {
+        RepositorioDeProductos repositorio = new RepositorioDeProductos();
+        Libreria libreria = new Libreria(repositorio);
+        Producto producto = new Producto("Principito", 50.0f);
+        Subscribible subscribible = new Subscribible("Gente", 50.0f, 4);
+        repositorio.RegistrarProducto(producto);
+        repositorio.RegistrarSubscribible(subscribible);
+        String direccion = "direccion";
+        libreria.RegistrarCliente(direccion);
+        String otraDireccion = "otraDireccion";
+        libreria.RegistrarCliente(otraDireccion);
+
+        libreria.Vender(direccion, "Principito", Year.of(2018), Month.SEPTEMBER);
+        libreria.Subscribir(otraDireccion, "Gente", Year.of(2018), Month.SEPTEMBER);
+        float cobroCliente = libreria.ObtenerCobro(direccion, Year.of(2018), Month.SEPTEMBER);
+        float cobroOtroCliente = libreria.ObtenerCobro(otraDireccion, Year.of(2018), Month.SEPTEMBER);
+
+        // 50 * 0.95 = 47.5
+        Assert.assertEquals(47.5f, cobroCliente, Float.MIN_NORMAL);
+        // 50 * 0.95 * 4 = 190
+        Assert.assertEquals(190.0f, cobroOtroCliente, Float.MIN_NORMAL);
+    }
 }
