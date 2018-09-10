@@ -131,4 +131,52 @@ public class LibreriaTest {
         // 50 * 0.95 * 4 = 190
         Assert.assertEquals(190.0f, cobroOtroCliente, Float.MIN_NORMAL);
     }
+
+    @Test
+    void CalculoMesesConComprasDeVariosClientes() {
+        RepositorioDeProductos repositorio = new RepositorioDeProductos();
+        Libreria libreria = new Libreria(repositorio);
+        String principito = "Principito";
+        Producto producto = new Producto(principito, 50.0f);
+        String gente = "Gente";
+        Subscribible subscribible = new Subscribible(gente, 50.0f, 4);
+        repositorio.RegistrarProducto(producto);
+        repositorio.RegistrarSubscribible(subscribible);
+        String cronica = "Cronica";
+        subscribible = new Subscribible(cronica, 10.0f, 30);
+        repositorio.RegistrarSubscribible(subscribible);
+        String lapiz = "Lapiz";
+        producto = new ArticuloDeLibreria(lapiz, 5.0f);
+        repositorio.RegistrarProducto(producto);
+        String direccion = "direccion";
+        libreria.RegistrarCliente(direccion);
+        String otraDireccion = "otraDireccion";
+        libreria.RegistrarCliente(otraDireccion);
+
+        libreria.Vender(direccion, principito, Year.of(2018), Month.AUGUST);
+        libreria.Subscribir(direccion, cronica, Year.of(2018), Month.SEPTEMBER);
+        libreria.Vender(direccion, cronica, Year.of(2018), Month.OCTOBER);
+        libreria.Vender(direccion, lapiz, Year.of(2018), Month.OCTOBER);
+        libreria.Subscribir(otraDireccion, gente, Year.of(2018), Month.AUGUST);
+        libreria.Subscribir(otraDireccion, gente, Year.of(2018), Month.SEPTEMBER);
+        libreria.Subscribir(otraDireccion, gente, Year.of(2018), Month.OCTOBER);
+        libreria.Subscribir(otraDireccion, cronica, Year.of(2018));
+        float cobroCliente = libreria.ObtenerCobro(direccion, Year.of(2018), Month.AUGUST);
+        cobroCliente += libreria.ObtenerCobro(direccion, Year.of(2018), Month.SEPTEMBER);
+        cobroCliente += libreria.ObtenerCobro(direccion, Year.of(2018), Month.OCTOBER);
+        float cobroOtroCliente = libreria.ObtenerCobro(otraDireccion, Year.of(2018), Month.AUGUST);
+        cobroOtroCliente += libreria.ObtenerCobro(otraDireccion, Year.of(2018), Month.SEPTEMBER);
+        cobroOtroCliente += libreria.ObtenerCobro(otraDireccion, Year.of(2018), Month.OCTOBER);
+
+        // principito: 50 * 0.95 = 47.5
+        // cronica (Subscripcion Septiembre): 10 * 0.95 * 30 = 285
+        // cronica (Venta Octubre): 10 * 0.95 = 9.5
+        // lapiz: 5 * 1.21 * 0.95 = 5,7475
+        // total: 47.5 + 285 + 9.5 + 5,7475 = 347.7475
+        Assert.assertEquals(347.7475f, cobroCliente, Float.MIN_NORMAL);
+        // gente: 50 * 4 * 3 * 0.95 = 570
+        // cronica : 10 * 0.8 * 30 * 3 = 720
+        // total: 570 + 720 = 1290
+        Assert.assertEquals(1290.0f, cobroOtroCliente, Float.MIN_NORMAL);
+    }
 }
