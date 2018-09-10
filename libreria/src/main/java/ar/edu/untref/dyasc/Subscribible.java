@@ -4,8 +4,8 @@ public class Subscribible extends Producto {
 
     private int periodicidad;
 
-    public Subscribible(float precio, int periodicidad) {
-        super(precio);
+    public Subscribible(String nombre, float precio, int periodicidad) {
+        super(nombre, precio);
         this.periodicidad = periodicidad;
     }
 

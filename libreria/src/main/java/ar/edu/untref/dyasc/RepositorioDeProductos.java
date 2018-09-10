@@ -12,8 +12,8 @@ public class RepositorioDeProductos {
         productos = new HashMap<String, Producto>();
     }
 
-    public void RegistrarProducto(String nombre, Producto producto) {
-        productos.put(nombre, producto);
+    public void RegistrarProducto(Producto producto) {
+        productos.put(producto.getNombre(), producto);
     }
 
     public void RegistrarSubscribible(String nombre, Subscribible producto) {

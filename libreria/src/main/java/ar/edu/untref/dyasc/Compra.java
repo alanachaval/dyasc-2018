@@ -5,7 +5,7 @@ import java.time.Year;
 
 public class Compra {
 
-    private static final float DESCUENTO_CLIENTE = 0.5f;
+    private static final float DESCUENTO_CLIENTE = 0.05f;
     protected Producto producto;
     private Year anio;
     private Month mes;

@@ -4,7 +4,7 @@ public class Cliente {
 
     private String direccion;
     private Cuenta cuenta;
-    
+
     public Cliente(Cuenta cuenta, String direccion) {
         this.cuenta = cuenta;
         this.direccion = direccion;
@@ -17,5 +17,5 @@ public class Cliente {
     public String getDireccion() {
         return direccion;
     }
-    
+
 }
