@@ -14,9 +14,9 @@ public class Cuenta {
     public void AgregarCompra(Compra compra) {
         this.compras.add(compra);
     }
-    
+
     public List<Compra> getCompras() {
         return compras;
     }
-    
+
 }

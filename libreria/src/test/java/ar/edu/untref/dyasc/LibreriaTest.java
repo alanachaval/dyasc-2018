@@ -13,9 +13,9 @@ public class LibreriaTest {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         libreria.RegistrarCliente("direccion");
-        
+
         float cobro = libreria.ObtenerCobro("direccion", Year.of(2018));
-        
+
         Assert.assertEquals(0.0f, cobro, Float.MIN_NORMAL);
     }
 
@@ -26,11 +26,11 @@ public class LibreriaTest {
         Producto producto = new Producto("Principito", 50.0f);
         repositorio.RegistrarProducto(producto);
         libreria.RegistrarCliente("direccion");
-        
+
         libreria.Vender("direccion", "Principito", Year.of(2018), Month.SEPTEMBER);
         float cobro = libreria.ObtenerCobro("direccion", Year.of(2018));
-        
-        //50 * 0.95 = 47.5
+
+        // 50 * 0.95 = 47.5
         Assert.assertEquals(47.5f, cobro, Float.MIN_NORMAL);
     }
 
@@ -41,11 +41,11 @@ public class LibreriaTest {
         Subscribible producto = new Subscribible("Gente", 50.0f, 4);
         repositorio.RegistrarSubscribible(producto);
         libreria.RegistrarCliente("direccion");
-        
+
         libreria.Subscribir("direccion", "Gente", Year.of(2018), Month.SEPTEMBER);
         float cobro = libreria.ObtenerCobro("direccion", Year.of(2018));
-        
-        //50 * 0.95 * 4 = 190
+
+        // 50 * 0.95 * 4 = 190
         Assert.assertEquals(190.0f, cobro, Float.MIN_NORMAL);
     }
 
@@ -56,11 +56,11 @@ public class LibreriaTest {
         Subscribible producto = new Subscribible("Gente", 50.0f, 4);
         repositorio.RegistrarSubscribible(producto);
         libreria.RegistrarCliente("direccion");
-        
+
         libreria.Subscribir("direccion", "Gente", Year.of(2018));
         float cobro = libreria.ObtenerCobro("direccion", Year.of(2018));
-        
-        //50 * 0.8 * 4 * 12 = 1920
+
+        // 50 * 0.8 * 4 * 12 = 1920
         Assert.assertEquals(1920.0f, cobro, Float.MIN_NORMAL);
     }
 
@@ -71,11 +71,11 @@ public class LibreriaTest {
         Producto producto = new Producto("Principito", 50.0f);
         repositorio.RegistrarProducto(producto);
         libreria.RegistrarCliente("direccion");
-        
+
         libreria.Vender("direccion", "Principito", Year.of(2018), Month.SEPTEMBER);
         float cobro = libreria.ObtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
-        
-        //50 * 0.95 = 47.5
+
+        // 50 * 0.95 = 47.5
         Assert.assertEquals(47.5f, cobro, Float.MIN_NORMAL);
     }
 
@@ -86,10 +86,10 @@ public class LibreriaTest {
         Producto producto = new Producto("Principito", 50.0f);
         repositorio.RegistrarProducto(producto);
         libreria.RegistrarCliente("direccion");
-        
+
         libreria.Vender("direccion", "Principito", Year.of(2018), Month.AUGUST);
         float cobro = libreria.ObtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
-        
+
         Assert.assertEquals(0.0f, cobro, Float.MIN_NORMAL);
     }
 }
