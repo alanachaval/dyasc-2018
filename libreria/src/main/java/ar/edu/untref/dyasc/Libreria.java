@@ -36,7 +36,8 @@ public class Libreria {
         clientes.get(direccion).getCuenta().AgregarCompra(subscripcion);
     }
     
-    public float ObtenerCobro(Cliente cliente, Year anio) {
+    public float ObtenerCobro(String direccion, Year anio) {
+        Cliente cliente = clientes.get(direccion);
         float total = 0.0f;
         for (Compra compra : cliente.getCuenta().getCompras()) {
             if(compra.getAnio() == anio) {
