@@ -33,4 +33,19 @@ public class LibreriaTest {
         //50 * 0.95 = 47.5
         Assert.assertEquals(47.5f, cobro, Float.MIN_NORMAL);
     }
+
+    @Test
+    void CalculoTotalConUnaSuscripcion() {
+        RepositorioDeProductos repositorio = new RepositorioDeProductos();
+        Libreria libreria = new Libreria(repositorio);
+        Subscribible producto = new Subscribible("Gente", 50.0f, 4);
+        repositorio.RegistrarSubscribible(producto);
+        libreria.RegistrarCliente("direccion");
+        
+        libreria.Subscribir("direccion", "Gente", Year.of(2018), Month.SEPTEMBER);
+        float cobro = libreria.ObtenerCobro("direccion", Year.of(2018));
+        
+        //50 * 0.95 * 4 = 190
+        Assert.assertEquals(190.0f, cobro, Float.MIN_NORMAL);
+    }
 }
