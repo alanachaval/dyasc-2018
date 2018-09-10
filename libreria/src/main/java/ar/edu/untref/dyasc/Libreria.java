@@ -16,32 +16,32 @@ public class Libreria {
     }
 
     public void RegistrarCliente(String direccion) {
-        clientes.put(direccion, new Cliente(new Cuenta(), direccion));
+        clientes.put(direccion, new Cliente(direccion));
     }
 
     public void Vender(String direccion, String producto, Year anio, Month mes) {
         Compra compra = new Compra(repositorio.GetProducto(producto), anio, mes);
-        clientes.get(direccion).getCuenta().AgregarCompra(compra);
+        clientes.get(direccion).AgregarCompra(compra);
     }
 
     public void Subscribir(String direccion, String subscribible, Year anio) {
         for (Month mes : Month.values()) {
             Subscripcion subscripcion = new Subscripcion(repositorio.GetSubscribible(subscribible), anio, mes,
                     Duracion.ANUAL);
-            clientes.get(direccion).getCuenta().AgregarCompra(subscripcion);
+            clientes.get(direccion).AgregarCompra(subscripcion);
         }
     }
 
     public void Subscribir(String direccion, String subscribible, Year anio, Month mes) {
         Subscripcion subscripcion = new Subscripcion(repositorio.GetSubscribible(subscribible), anio, mes,
                 Duracion.MENSUAL);
-        clientes.get(direccion).getCuenta().AgregarCompra(subscripcion);
+        clientes.get(direccion).AgregarCompra(subscripcion);
     }
 
     public float ObtenerCobro(String direccion, Year anio) {
         Cliente cliente = clientes.get(direccion);
         float total = 0.0f;
-        for (Compra compra : cliente.getCuenta().getCompras()) {
+        for (Compra compra : cliente.getCompras()) {
             if (compra.getAnio().equals(anio)) {
                 total += compra.getValor();
             }
@@ -52,7 +52,7 @@ public class Libreria {
     public float ObtenerCobro(String direccion, Year anio, Month mes) {
         Cliente cliente = clientes.get(direccion);
         float total = 0.0f;
-        for (Compra compra : cliente.getCuenta().getCompras()) {
+        for (Compra compra : cliente.getCompras()) {
             if (compra.getAnio().equals(anio) && compra.getMes().equals(mes)) {
                 total += compra.getValor();
             }
