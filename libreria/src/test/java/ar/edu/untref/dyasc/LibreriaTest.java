@@ -63,4 +63,33 @@ public class LibreriaTest {
         //50 * 0.8 * 4 * 12 = 1920
         Assert.assertEquals(1920.0f, cobro, Float.MIN_NORMAL);
     }
+
+    @Test
+    void CalculoMesConUnaCompra() {
+        RepositorioDeProductos repositorio = new RepositorioDeProductos();
+        Libreria libreria = new Libreria(repositorio);
+        Producto producto = new Producto("Principito", 50.0f);
+        repositorio.RegistrarProducto(producto);
+        libreria.RegistrarCliente("direccion");
+        
+        libreria.Vender("direccion", "Principito", Year.of(2018), Month.SEPTEMBER);
+        float cobro = libreria.ObtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
+        
+        //50 * 0.95 = 47.5
+        Assert.assertEquals(47.5f, cobro, Float.MIN_NORMAL);
+    }
+
+    @Test
+    void CalculoMesConUnaCompraEnOtroMes() {
+        RepositorioDeProductos repositorio = new RepositorioDeProductos();
+        Libreria libreria = new Libreria(repositorio);
+        Producto producto = new Producto("Principito", 50.0f);
+        repositorio.RegistrarProducto(producto);
+        libreria.RegistrarCliente("direccion");
+        
+        libreria.Vender("direccion", "Principito", Year.of(2018), Month.AUGUST);
+        float cobro = libreria.ObtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
+        
+        Assert.assertEquals(0.0f, cobro, Float.MIN_NORMAL);
+    }
 }

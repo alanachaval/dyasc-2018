@@ -49,10 +49,11 @@ public class Libreria {
         return total;
     }
 
-    public float ObtenerCobro(Cliente cliente, Month mes, Year anio) {
+    public float ObtenerCobro(String direccion, Year anio, Month mes) {
+        Cliente cliente = clientes.get(direccion);
         float total = 0.0f;
         for (Compra compra : cliente.getCuenta().getCompras()) {
-            if (compra.getAnio() == anio && compra.getMes() == mes) {
+            if (compra.getAnio().equals(anio) && compra.getMes().equals(mes)) {
                 total += compra.getValor();
             }
         }
