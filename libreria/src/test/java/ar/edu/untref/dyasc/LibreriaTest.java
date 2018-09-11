@@ -12,9 +12,9 @@ public class LibreriaTest {
     void CalculoTotalSinCompras() {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
-        libreria.RegistrarCliente("direccion");
+        libreria.registrarCliente("direccion");
 
-        float cobro = libreria.ObtenerCobro("direccion", Year.of(2018));
+        float cobro = libreria.obtenerCobro("direccion", Year.of(2018));
 
         Assert.assertEquals(0.0f, cobro, Float.MIN_NORMAL);
     }
@@ -24,11 +24,11 @@ public class LibreriaTest {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
-        repositorio.RegistrarProducto(producto);
-        libreria.RegistrarCliente("direccion");
+        repositorio.registrarProducto(producto);
+        libreria.registrarCliente("direccion");
 
-        libreria.Vender("direccion", "Principito", Year.of(2018), Month.SEPTEMBER);
-        float cobro = libreria.ObtenerCobro("direccion", Year.of(2018));
+        libreria.vender("direccion", "Principito", Year.of(2018), Month.SEPTEMBER);
+        float cobro = libreria.obtenerCobro("direccion", Year.of(2018));
 
         // 50 * 0.95 = 47.5
         Assert.assertEquals(47.5f, cobro, Float.MIN_NORMAL);
@@ -39,11 +39,11 @@ public class LibreriaTest {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Subscribible producto = new Subscribible("Gente", 50.0f, 4);
-        repositorio.RegistrarSubscribible(producto);
-        libreria.RegistrarCliente("direccion");
+        repositorio.registrarSubscribible(producto);
+        libreria.registrarCliente("direccion");
 
-        libreria.Subscribir("direccion", "Gente", Year.of(2018), Month.SEPTEMBER);
-        float cobro = libreria.ObtenerCobro("direccion", Year.of(2018));
+        libreria.subscribir("direccion", "Gente", Year.of(2018), Month.SEPTEMBER);
+        float cobro = libreria.obtenerCobro("direccion", Year.of(2018));
 
         // 50 * 0.95 * 4 = 190
         Assert.assertEquals(190.0f, cobro, Float.MIN_NORMAL);
@@ -54,11 +54,11 @@ public class LibreriaTest {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Subscribible producto = new Subscribible("Gente", 50.0f, 4);
-        repositorio.RegistrarSubscribible(producto);
-        libreria.RegistrarCliente("direccion");
+        repositorio.registrarSubscribible(producto);
+        libreria.registrarCliente("direccion");
 
-        libreria.Subscribir("direccion", "Gente", Year.of(2018));
-        float cobro = libreria.ObtenerCobro("direccion", Year.of(2018));
+        libreria.subscribir("direccion", "Gente", Year.of(2018));
+        float cobro = libreria.obtenerCobro("direccion", Year.of(2018));
 
         // 50 * 0.8 * 4 * 12 = 1920
         Assert.assertEquals(1920.0f, cobro, Float.MIN_NORMAL);
@@ -69,11 +69,11 @@ public class LibreriaTest {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
-        repositorio.RegistrarProducto(producto);
-        libreria.RegistrarCliente("direccion");
+        repositorio.registrarProducto(producto);
+        libreria.registrarCliente("direccion");
 
-        libreria.Vender("direccion", "Principito", Year.of(2018), Month.SEPTEMBER);
-        float cobro = libreria.ObtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
+        libreria.vender("direccion", "Principito", Year.of(2018), Month.SEPTEMBER);
+        float cobro = libreria.obtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
 
         // 50 * 0.95 = 47.5
         Assert.assertEquals(47.5f, cobro, Float.MIN_NORMAL);
@@ -84,11 +84,11 @@ public class LibreriaTest {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
-        repositorio.RegistrarProducto(producto);
-        libreria.RegistrarCliente("direccion");
+        repositorio.registrarProducto(producto);
+        libreria.registrarCliente("direccion");
 
-        libreria.Vender("direccion", "Principito", Year.of(2018), Month.AUGUST);
-        float cobro = libreria.ObtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
+        libreria.vender("direccion", "Principito", Year.of(2018), Month.AUGUST);
+        float cobro = libreria.obtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
 
         Assert.assertEquals(0.0f, cobro, Float.MIN_NORMAL);
     }
@@ -98,12 +98,12 @@ public class LibreriaTest {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
-        repositorio.RegistrarProducto(producto);
-        libreria.RegistrarCliente("direccion");
-        libreria.RegistrarCliente("Otradireccion");
+        repositorio.registrarProducto(producto);
+        libreria.registrarCliente("direccion");
+        libreria.registrarCliente("Otradireccion");
 
-        libreria.Vender("Otradireccion", "Principito", Year.of(2018), Month.SEPTEMBER);
-        float cobro = libreria.ObtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
+        libreria.vender("Otradireccion", "Principito", Year.of(2018), Month.SEPTEMBER);
+        float cobro = libreria.obtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
 
         Assert.assertEquals(0.0f, cobro, Float.MIN_NORMAL);
     }
@@ -114,17 +114,17 @@ public class LibreriaTest {
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
         Subscribible subscribible = new Subscribible("Gente", 50.0f, 4);
-        repositorio.RegistrarProducto(producto);
-        repositorio.RegistrarSubscribible(subscribible);
+        repositorio.registrarProducto(producto);
+        repositorio.registrarSubscribible(subscribible);
         String direccion = "direccion";
-        libreria.RegistrarCliente(direccion);
+        libreria.registrarCliente(direccion);
         String otraDireccion = "otraDireccion";
-        libreria.RegistrarCliente(otraDireccion);
+        libreria.registrarCliente(otraDireccion);
 
-        libreria.Vender(direccion, "Principito", Year.of(2018), Month.SEPTEMBER);
-        libreria.Subscribir(otraDireccion, "Gente", Year.of(2018), Month.SEPTEMBER);
-        float cobroCliente = libreria.ObtenerCobro(direccion, Year.of(2018), Month.SEPTEMBER);
-        float cobroOtroCliente = libreria.ObtenerCobro(otraDireccion, Year.of(2018), Month.SEPTEMBER);
+        libreria.vender(direccion, "Principito", Year.of(2018), Month.SEPTEMBER);
+        libreria.subscribir(otraDireccion, "Gente", Year.of(2018), Month.SEPTEMBER);
+        float cobroCliente = libreria.obtenerCobro(direccion, Year.of(2018), Month.SEPTEMBER);
+        float cobroOtroCliente = libreria.obtenerCobro(otraDireccion, Year.of(2018), Month.SEPTEMBER);
 
         // 50 * 0.95 = 47.5
         Assert.assertEquals(47.5f, cobroCliente, Float.MIN_NORMAL);
@@ -140,33 +140,33 @@ public class LibreriaTest {
         Producto producto = new Producto(principito, 50.0f);
         String gente = "Gente";
         Subscribible subscribible = new Subscribible(gente, 50.0f, 4);
-        repositorio.RegistrarProducto(producto);
-        repositorio.RegistrarSubscribible(subscribible);
+        repositorio.registrarProducto(producto);
+        repositorio.registrarSubscribible(subscribible);
         String cronica = "Cronica";
         subscribible = new Subscribible(cronica, 10.0f, 30);
-        repositorio.RegistrarSubscribible(subscribible);
+        repositorio.registrarSubscribible(subscribible);
         String lapiz = "Lapiz";
         producto = new ArticuloDeLibreria(lapiz, 5.0f);
-        repositorio.RegistrarProducto(producto);
+        repositorio.registrarProducto(producto);
         String direccion = "direccion";
-        libreria.RegistrarCliente(direccion);
+        libreria.registrarCliente(direccion);
         String otraDireccion = "otraDireccion";
-        libreria.RegistrarCliente(otraDireccion);
+        libreria.registrarCliente(otraDireccion);
 
-        libreria.Vender(direccion, principito, Year.of(2018), Month.AUGUST);
-        libreria.Subscribir(direccion, cronica, Year.of(2018), Month.SEPTEMBER);
-        libreria.Vender(direccion, cronica, Year.of(2018), Month.OCTOBER);
-        libreria.Vender(direccion, lapiz, Year.of(2018), Month.OCTOBER);
-        libreria.Subscribir(otraDireccion, gente, Year.of(2018), Month.AUGUST);
-        libreria.Subscribir(otraDireccion, gente, Year.of(2018), Month.SEPTEMBER);
-        libreria.Subscribir(otraDireccion, gente, Year.of(2018), Month.OCTOBER);
-        libreria.Subscribir(otraDireccion, cronica, Year.of(2018));
-        float cobroCliente = libreria.ObtenerCobro(direccion, Year.of(2018), Month.AUGUST);
-        cobroCliente += libreria.ObtenerCobro(direccion, Year.of(2018), Month.SEPTEMBER);
-        cobroCliente += libreria.ObtenerCobro(direccion, Year.of(2018), Month.OCTOBER);
-        float cobroOtroCliente = libreria.ObtenerCobro(otraDireccion, Year.of(2018), Month.AUGUST);
-        cobroOtroCliente += libreria.ObtenerCobro(otraDireccion, Year.of(2018), Month.SEPTEMBER);
-        cobroOtroCliente += libreria.ObtenerCobro(otraDireccion, Year.of(2018), Month.OCTOBER);
+        libreria.vender(direccion, principito, Year.of(2018), Month.AUGUST);
+        libreria.subscribir(direccion, cronica, Year.of(2018), Month.SEPTEMBER);
+        libreria.vender(direccion, cronica, Year.of(2018), Month.OCTOBER);
+        libreria.vender(direccion, lapiz, Year.of(2018), Month.OCTOBER);
+        libreria.subscribir(otraDireccion, gente, Year.of(2018), Month.AUGUST);
+        libreria.subscribir(otraDireccion, gente, Year.of(2018), Month.SEPTEMBER);
+        libreria.subscribir(otraDireccion, gente, Year.of(2018), Month.OCTOBER);
+        libreria.subscribir(otraDireccion, cronica, Year.of(2018));
+        float cobroCliente = libreria.obtenerCobro(direccion, Year.of(2018), Month.AUGUST);
+        cobroCliente += libreria.obtenerCobro(direccion, Year.of(2018), Month.SEPTEMBER);
+        cobroCliente += libreria.obtenerCobro(direccion, Year.of(2018), Month.OCTOBER);
+        float cobroOtroCliente = libreria.obtenerCobro(otraDireccion, Year.of(2018), Month.AUGUST);
+        cobroOtroCliente += libreria.obtenerCobro(otraDireccion, Year.of(2018), Month.SEPTEMBER);
+        cobroOtroCliente += libreria.obtenerCobro(otraDireccion, Year.of(2018), Month.OCTOBER);
 
         // principito: 50 * 0.95 = 47.5
         // cronica (Subscripcion Septiembre): 10 * 0.95 * 30 = 285

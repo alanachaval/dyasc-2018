@@ -15,30 +15,30 @@ public class Libreria {
         this.repositorio = repositorio;
     }
 
-    public void RegistrarCliente(String direccion) {
+    public void registrarCliente(String direccion) {
         clientes.put(direccion, new Cliente(direccion));
     }
 
-    public void Vender(String direccion, String producto, Year anio, Month mes) {
-        Compra compra = new Compra(repositorio.GetProducto(producto), anio, mes);
-        clientes.get(direccion).AgregarCompra(compra);
+    public void vender(String direccion, String producto, Year anio, Month mes) {
+        Compra compra = new Compra(repositorio.getProducto(producto), anio, mes);
+        clientes.get(direccion).agregarCompra(compra);
     }
 
-    public void Subscribir(String direccion, String subscribible, Year anio) {
+    public void subscribir(String direccion, String subscribible, Year anio) {
         for (Month mes : Month.values()) {
-            Subscripcion subscripcion = new Subscripcion(repositorio.GetSubscribible(subscribible), anio, mes,
+            Subscripcion subscripcion = new Subscripcion(repositorio.getSubscribible(subscribible), anio, mes,
                     Duracion.ANUAL);
-            clientes.get(direccion).AgregarCompra(subscripcion);
+            clientes.get(direccion).agregarCompra(subscripcion);
         }
     }
 
-    public void Subscribir(String direccion, String subscribible, Year anio, Month mes) {
-        Subscripcion subscripcion = new Subscripcion(repositorio.GetSubscribible(subscribible), anio, mes,
+    public void subscribir(String direccion, String subscribible, Year anio, Month mes) {
+        Subscripcion subscripcion = new Subscripcion(repositorio.getSubscribible(subscribible), anio, mes,
                 Duracion.MENSUAL);
-        clientes.get(direccion).AgregarCompra(subscripcion);
+        clientes.get(direccion).agregarCompra(subscripcion);
     }
 
-    public float ObtenerCobro(String direccion, Year anio) {
+    public float obtenerCobro(String direccion, Year anio) {
         Cliente cliente = clientes.get(direccion);
         float total = 0.0f;
         for (Compra compra : cliente.getCompras()) {
@@ -49,7 +49,7 @@ public class Libreria {
         return total;
     }
 
-    public float ObtenerCobro(String direccion, Year anio, Month mes) {
+    public float obtenerCobro(String direccion, Year anio, Month mes) {
         Cliente cliente = clientes.get(direccion);
         float total = 0.0f;
         for (Compra compra : cliente.getCompras()) {

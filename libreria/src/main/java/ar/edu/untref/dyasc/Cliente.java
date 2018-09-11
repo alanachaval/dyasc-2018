@@ -21,7 +21,7 @@ public class Cliente {
         return direccion;
     }
 
-    public void AgregarCompra(Compra compra) {
+    public void agregarCompra(Compra compra) {
         this.compras.add(compra);
     }
 

@@ -13,20 +13,20 @@ public class RepositorioDeProductos {
         subscribibles = new HashMap<String, Subscribible>();
     }
 
-    public void RegistrarProducto(Producto producto) {
+    public void registrarProducto(Producto producto) {
         productos.put(producto.getNombre(), producto);
     }
 
-    public void RegistrarSubscribible(Subscribible producto) {
+    public void registrarSubscribible(Subscribible producto) {
         subscribibles.put(producto.getNombre(), producto);
         productos.put(producto.getNombre(), producto);
     }
 
-    public Producto GetProducto(String nombre) {
+    public Producto getProducto(String nombre) {
         return productos.get(nombre);
     }
 
-    public Subscribible GetSubscribible(String nombre) {
+    public Subscribible getSubscribible(String nombre) {
         return subscribibles.get(nombre);
     }
 
