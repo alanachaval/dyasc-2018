@@ -3,6 +3,8 @@ package ar.edu.untref.dyasc;
 import java.util.HashMap;
 import java.util.Map;
 
+import ar.edu.untref.dyasc.excepciones.ProductoNoRegistradoException;
+
 public class RepositorioDeProductos {
 
     private Map<String, Producto> productos;
@@ -22,12 +24,20 @@ public class RepositorioDeProductos {
         productos.put(producto.getNombre(), producto);
     }
 
-    public Producto getProducto(String nombre) {
-        return productos.get(nombre);
+    public Producto getProducto(String nombre) throws ProductoNoRegistradoException {
+        Producto producto = productos.get(nombre);
+        if(producto == null) {
+            throw new ProductoNoRegistradoException(nombre);
+        }
+        return producto;
     }
 
-    public Subscribible getSubscribible(String nombre) {
-        return subscribibles.get(nombre);
+    public Subscribible getSubscribible(String nombre) throws ProductoNoRegistradoException {
+        Subscribible subscribible = subscribibles.get(nombre);
+        if(subscribible == null) {
+            throw new ProductoNoRegistradoException(nombre);
+        }
+        return subscribible;
     }
 
 }

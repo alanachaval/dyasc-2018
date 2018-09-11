@@ -6,6 +6,8 @@ import java.time.Year;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+import ar.edu.untref.dyasc.excepciones.ProductoNoRegistradoException;
+
 public class LibreriaTest {
 
     @Test
@@ -20,7 +22,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoTotalConUnaCompra() {
+    void CalculoTotalConUnaCompra() throws ProductoNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
@@ -35,7 +37,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoTotalConUnaSuscripcionMensual() {
+    void CalculoTotalConUnaSuscripcionMensual() throws ProductoNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Subscribible producto = new Subscribible("Gente", 50.0f, 4);
@@ -50,7 +52,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoTotalConUnaSuscripcionAnual() {
+    void CalculoTotalConUnaSuscripcionAnual() throws ProductoNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Subscribible producto = new Subscribible("Gente", 50.0f, 4);
@@ -65,7 +67,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoMesConUnaCompra() {
+    void CalculoMesConUnaCompra() throws ProductoNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
@@ -80,7 +82,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoMesConUnaCompraEnOtroMes() {
+    void CalculoMesConUnaCompraEnOtroMes() throws ProductoNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
@@ -94,7 +96,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoMesConUnaCompraDeOtroCliente() {
+    void CalculoMesConUnaCompraDeOtroCliente() throws ProductoNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
@@ -109,7 +111,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoMesConUnaCompraDeVariosClientes() {
+    void CalculoMesConUnaCompraDeVariosClientes() throws ProductoNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
@@ -133,7 +135,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoMesesConComprasDeVariosClientes() {
+    void CalculoMesesConComprasDeVariosClientes() throws ProductoNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         String principito = "Principito";

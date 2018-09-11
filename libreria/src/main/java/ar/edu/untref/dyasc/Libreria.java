@@ -5,6 +5,8 @@ import java.time.Year;
 import java.util.HashMap;
 import java.util.Map;
 
+import ar.edu.untref.dyasc.excepciones.ProductoNoRegistradoException;
+
 public class Libreria {
 
     private Map<String, Cliente> clientes;
@@ -19,12 +21,12 @@ public class Libreria {
         clientes.put(direccion, new Cliente(direccion));
     }
 
-    public void vender(String direccion, String producto, Year anio, Month mes) {
+    public void vender(String direccion, String producto, Year anio, Month mes) throws ProductoNoRegistradoException {
         Compra compra = new Compra(repositorio.getProducto(producto), anio, mes);
         clientes.get(direccion).agregarCompra(compra);
     }
 
-    public void subscribir(String direccion, String subscribible, Year anio) {
+    public void subscribir(String direccion, String subscribible, Year anio) throws ProductoNoRegistradoException {
         for (Month mes : Month.values()) {
             Subscripcion subscripcion = new Subscripcion(repositorio.getSubscribible(subscribible), anio, mes,
                     Duracion.ANUAL);
@@ -32,7 +34,7 @@ public class Libreria {
         }
     }
 
-    public void subscribir(String direccion, String subscribible, Year anio, Month mes) {
+    public void subscribir(String direccion, String subscribible, Year anio, Month mes) throws ProductoNoRegistradoException {
         Subscripcion subscripcion = new Subscripcion(repositorio.getSubscribible(subscribible), anio, mes,
                 Duracion.MENSUAL);
         clientes.get(direccion).agregarCompra(subscripcion);
