@@ -6,12 +6,13 @@ import java.time.Year;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+import ar.edu.untref.dyasc.excepciones.ClienteNoRegistradoException;
 import ar.edu.untref.dyasc.excepciones.ProductoNoRegistradoException;
 
 public class LibreriaTest {
 
     @Test
-    void CalculoTotalSinCompras() {
+    void CalculoTotalSinCompras() throws ClienteNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         libreria.registrarCliente("direccion");
@@ -22,7 +23,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoTotalConUnaCompra() throws ProductoNoRegistradoException {
+    void CalculoTotalConUnaCompra() throws ProductoNoRegistradoException, ClienteNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
@@ -37,7 +38,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoTotalConUnaSuscripcionMensual() throws ProductoNoRegistradoException {
+    void CalculoTotalConUnaSuscripcionMensual() throws ProductoNoRegistradoException, ClienteNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Subscribible producto = new Subscribible("Gente", 50.0f, 4);
@@ -52,7 +53,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoTotalConUnaSuscripcionAnual() throws ProductoNoRegistradoException {
+    void CalculoTotalConUnaSuscripcionAnual() throws ProductoNoRegistradoException, ClienteNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Subscribible producto = new Subscribible("Gente", 50.0f, 4);
@@ -67,7 +68,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoMesConUnaCompra() throws ProductoNoRegistradoException {
+    void CalculoMesConUnaCompra() throws ProductoNoRegistradoException, ClienteNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
@@ -82,7 +83,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoMesConUnaCompraEnOtroMes() throws ProductoNoRegistradoException {
+    void CalculoMesConUnaCompraEnOtroMes() throws ProductoNoRegistradoException, ClienteNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
@@ -96,7 +97,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoMesConUnaCompraDeOtroCliente() throws ProductoNoRegistradoException {
+    void CalculoMesConUnaCompraDeOtroCliente() throws ProductoNoRegistradoException, ClienteNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
@@ -111,7 +112,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoMesConUnaCompraDeVariosClientes() throws ProductoNoRegistradoException {
+    void CalculoMesConUnaCompraDeVariosClientes() throws ProductoNoRegistradoException, ClienteNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         Producto producto = new Producto("Principito", 50.0f);
@@ -135,7 +136,7 @@ public class LibreriaTest {
     }
 
     @Test
-    void CalculoMesesConComprasDeVariosClientes() throws ProductoNoRegistradoException {
+    void CalculoMesesConComprasDeVariosClientes() throws ProductoNoRegistradoException, ClienteNoRegistradoException {
         RepositorioDeProductos repositorio = new RepositorioDeProductos();
         Libreria libreria = new Libreria(repositorio);
         String principito = "Principito";

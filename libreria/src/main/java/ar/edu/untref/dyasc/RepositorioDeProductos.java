@@ -25,19 +25,19 @@ public class RepositorioDeProductos {
     }
 
     public Producto getProducto(String nombre) throws ProductoNoRegistradoException {
-        Producto producto = productos.get(nombre);
-        if(producto == null) {
-            throw new ProductoNoRegistradoException(nombre);
-        }
-        return producto;
+        return getElemento(productos, nombre);
     }
 
     public Subscribible getSubscribible(String nombre) throws ProductoNoRegistradoException {
-        Subscribible subscribible = subscribibles.get(nombre);
-        if(subscribible == null) {
+        return getElemento(subscribibles, nombre);
+    }
+
+    private <T> T getElemento(Map<String, T> mapa, String nombre) throws ProductoNoRegistradoException {
+        T elemento = mapa.get(nombre);
+        if (elemento == null) {
             throw new ProductoNoRegistradoException(nombre);
         }
-        return subscribible;
+        return elemento;
     }
 
 }

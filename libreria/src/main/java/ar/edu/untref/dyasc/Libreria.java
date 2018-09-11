@@ -5,6 +5,7 @@ import java.time.Year;
 import java.util.HashMap;
 import java.util.Map;
 
+import ar.edu.untref.dyasc.excepciones.ClienteNoRegistradoException;
 import ar.edu.untref.dyasc.excepciones.ProductoNoRegistradoException;
 
 public class Libreria {
@@ -21,27 +22,33 @@ public class Libreria {
         clientes.put(direccion, new Cliente(direccion));
     }
 
-    public void vender(String direccion, String producto, Year anio, Month mes) throws ProductoNoRegistradoException {
+    public void vender(String direccion, String producto, Year anio, Month mes)
+            throws ProductoNoRegistradoException, ClienteNoRegistradoException {
+        Cliente cliente = getCliente(direccion);
         Compra compra = new Compra(repositorio.getProducto(producto), anio, mes);
-        clientes.get(direccion).agregarCompra(compra);
+        cliente.agregarCompra(compra);
     }
 
-    public void subscribir(String direccion, String subscribible, Year anio) throws ProductoNoRegistradoException {
+    public void subscribir(String direccion, String subscribible, Year anio)
+            throws ProductoNoRegistradoException, ClienteNoRegistradoException {
+        Cliente cliente = getCliente(direccion);
         for (Month mes : Month.values()) {
             Subscripcion subscripcion = new Subscripcion(repositorio.getSubscribible(subscribible), anio, mes,
                     Duracion.ANUAL);
-            clientes.get(direccion).agregarCompra(subscripcion);
+            cliente.agregarCompra(subscripcion);
         }
     }
 
-    public void subscribir(String direccion, String subscribible, Year anio, Month mes) throws ProductoNoRegistradoException {
+    public void subscribir(String direccion, String subscribible, Year anio, Month mes)
+            throws ProductoNoRegistradoException, ClienteNoRegistradoException {
+        Cliente cliente = getCliente(direccion);
         Subscripcion subscripcion = new Subscripcion(repositorio.getSubscribible(subscribible), anio, mes,
                 Duracion.MENSUAL);
-        clientes.get(direccion).agregarCompra(subscripcion);
+        cliente.agregarCompra(subscripcion);
     }
 
-    public float obtenerCobro(String direccion, Year anio) {
-        Cliente cliente = clientes.get(direccion);
+    public float obtenerCobro(String direccion, Year anio) throws ClienteNoRegistradoException {
+        Cliente cliente = getCliente(direccion);
         float total = 0.0f;
         for (Compra compra : cliente.getCompras()) {
             if (compra.getAnio().equals(anio)) {
@@ -51,8 +58,8 @@ public class Libreria {
         return total;
     }
 
-    public float obtenerCobro(String direccion, Year anio, Month mes) {
-        Cliente cliente = clientes.get(direccion);
+    public float obtenerCobro(String direccion, Year anio, Month mes) throws ClienteNoRegistradoException {
+        Cliente cliente = getCliente(direccion);
         float total = 0.0f;
         for (Compra compra : cliente.getCompras()) {
             if (compra.getAnio().equals(anio) && compra.getMes().equals(mes)) {
@@ -60,6 +67,14 @@ public class Libreria {
             }
         }
         return total;
+    }
+
+    private Cliente getCliente(String direccion) throws ClienteNoRegistradoException {
+        Cliente cliente = clientes.get(direccion);
+        if (cliente == null) {
+            throw new ClienteNoRegistradoException(direccion);
+        }
+        return cliente;
     }
 
 }
