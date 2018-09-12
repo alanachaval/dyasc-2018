@@ -11,11 +11,11 @@ import ar.edu.untref.dyasc.excepciones.ProductoNoRegistradoException;
 public class Libreria {
 
     private Map<String, Cliente> clientes;
-    private RepositorioDeProductos repositorio;
+    private RepositorioDeProductos repositorioDeProductos;
 
     public Libreria(RepositorioDeProductos repositorio) {
         clientes = new HashMap<String, Cliente>();
-        this.repositorio = repositorio;
+        this.repositorioDeProductos = repositorio;
     }
 
     public void registrarCliente(String direccion) {
@@ -25,7 +25,7 @@ public class Libreria {
     public void vender(String direccion, String producto, Year anio, Month mes)
             throws ProductoNoRegistradoException, ClienteNoRegistradoException {
         Cliente cliente = getCliente(direccion);
-        Compra compra = new Compra(repositorio.getProducto(producto), anio, mes);
+        Compra compra = new Compra(repositorioDeProductos.getProducto(producto), anio, mes);
         cliente.agregarCompra(compra);
     }
 
@@ -33,8 +33,8 @@ public class Libreria {
             throws ProductoNoRegistradoException, ClienteNoRegistradoException {
         Cliente cliente = getCliente(direccion);
         for (Month mes : Month.values()) {
-            Subscripcion subscripcion = new Subscripcion(repositorio.getSubscribible(subscribible), anio, mes,
-                    Duracion.ANUAL);
+            Subscripcion subscripcion = new Subscripcion(repositorioDeProductos.getSubscribible(subscribible), anio,
+                    mes, Duracion.ANUAL);
             cliente.agregarCompra(subscripcion);
         }
     }
@@ -42,7 +42,7 @@ public class Libreria {
     public void subscribir(String direccion, String subscribible, Year anio, Month mes)
             throws ProductoNoRegistradoException, ClienteNoRegistradoException {
         Cliente cliente = getCliente(direccion);
-        Subscripcion subscripcion = new Subscripcion(repositorio.getSubscribible(subscribible), anio, mes,
+        Subscripcion subscripcion = new Subscripcion(repositorioDeProductos.getSubscribible(subscribible), anio, mes,
                 Duracion.MENSUAL);
         cliente.agregarCompra(subscripcion);
     }
