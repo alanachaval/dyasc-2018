@@ -17,7 +17,7 @@ public class LibreriaTest {
         Libreria libreria = new Libreria(repositorio);
         libreria.registrarCliente("direccion");
 
-        float cobro = libreria.obtenerCobro("direccion", Year.of(2018));
+        float cobro = libreria.obtenerValorCompras("direccion", Year.of(2018));
 
         Assert.assertEquals(0.0f, cobro, Float.MIN_NORMAL);
     }
@@ -31,7 +31,7 @@ public class LibreriaTest {
         libreria.registrarCliente("direccion");
 
         libreria.vender("direccion", "Principito", Year.of(2018), Month.SEPTEMBER);
-        float cobro = libreria.obtenerCobro("direccion", Year.of(2018));
+        float cobro = libreria.obtenerValorCompras("direccion", Year.of(2018));
 
         // 50 * 0.95 = 47.5
         Assert.assertEquals(47.5f, cobro, Float.MIN_NORMAL);
@@ -46,7 +46,7 @@ public class LibreriaTest {
         libreria.registrarCliente("direccion");
 
         libreria.subscribir("direccion", "Gente", Year.of(2018), Month.SEPTEMBER);
-        float cobro = libreria.obtenerCobro("direccion", Year.of(2018));
+        float cobro = libreria.obtenerValorCompras("direccion", Year.of(2018));
 
         // 50 * 0.95 * 4 = 190
         Assert.assertEquals(190.0f, cobro, Float.MIN_NORMAL);
@@ -61,7 +61,7 @@ public class LibreriaTest {
         libreria.registrarCliente("direccion");
 
         libreria.subscribir("direccion", "Gente", Year.of(2018));
-        float cobro = libreria.obtenerCobro("direccion", Year.of(2018));
+        float cobro = libreria.obtenerValorCompras("direccion", Year.of(2018));
 
         // 50 * 0.8 * 4 * 12 = 1920
         Assert.assertEquals(1920.0f, cobro, Float.MIN_NORMAL);
@@ -76,7 +76,7 @@ public class LibreriaTest {
         libreria.registrarCliente("direccion");
 
         libreria.vender("direccion", "Principito", Year.of(2018), Month.SEPTEMBER);
-        float cobro = libreria.obtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
+        float cobro = libreria.obtenerValorVentas("direccion", Year.of(2018), Month.SEPTEMBER);
 
         // 50 * 0.95 = 47.5
         Assert.assertEquals(47.5f, cobro, Float.MIN_NORMAL);
@@ -91,7 +91,7 @@ public class LibreriaTest {
         libreria.registrarCliente("direccion");
 
         libreria.vender("direccion", "Principito", Year.of(2018), Month.AUGUST);
-        float cobro = libreria.obtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
+        float cobro = libreria.obtenerValorVentas("direccion", Year.of(2018), Month.SEPTEMBER);
 
         Assert.assertEquals(0.0f, cobro, Float.MIN_NORMAL);
     }
@@ -106,7 +106,7 @@ public class LibreriaTest {
         libreria.registrarCliente("Otradireccion");
 
         libreria.vender("Otradireccion", "Principito", Year.of(2018), Month.SEPTEMBER);
-        float cobro = libreria.obtenerCobro("direccion", Year.of(2018), Month.SEPTEMBER);
+        float cobro = libreria.obtenerValorVentas("direccion", Year.of(2018), Month.SEPTEMBER);
 
         Assert.assertEquals(0.0f, cobro, Float.MIN_NORMAL);
     }
@@ -126,8 +126,8 @@ public class LibreriaTest {
 
         libreria.vender(direccion, "Principito", Year.of(2018), Month.SEPTEMBER);
         libreria.subscribir(otraDireccion, "Gente", Year.of(2018), Month.SEPTEMBER);
-        float cobroCliente = libreria.obtenerCobro(direccion, Year.of(2018), Month.SEPTEMBER);
-        float cobroOtroCliente = libreria.obtenerCobro(otraDireccion, Year.of(2018), Month.SEPTEMBER);
+        float cobroCliente = libreria.obtenerValorVentas(direccion, Year.of(2018), Month.SEPTEMBER);
+        float cobroOtroCliente = libreria.obtenerValorVentas(otraDireccion, Year.of(2018), Month.SEPTEMBER);
 
         // 50 * 0.95 = 47.5
         Assert.assertEquals(47.5f, cobroCliente, Float.MIN_NORMAL);
@@ -164,12 +164,12 @@ public class LibreriaTest {
         libreria.subscribir(otraDireccion, gente, Year.of(2018), Month.SEPTEMBER);
         libreria.subscribir(otraDireccion, gente, Year.of(2018), Month.OCTOBER);
         libreria.subscribir(otraDireccion, cronica, Year.of(2018));
-        float cobroCliente = libreria.obtenerCobro(direccion, Year.of(2018), Month.AUGUST);
-        cobroCliente += libreria.obtenerCobro(direccion, Year.of(2018), Month.SEPTEMBER);
-        cobroCliente += libreria.obtenerCobro(direccion, Year.of(2018), Month.OCTOBER);
-        float cobroOtroCliente = libreria.obtenerCobro(otraDireccion, Year.of(2018), Month.AUGUST);
-        cobroOtroCliente += libreria.obtenerCobro(otraDireccion, Year.of(2018), Month.SEPTEMBER);
-        cobroOtroCliente += libreria.obtenerCobro(otraDireccion, Year.of(2018), Month.OCTOBER);
+        float cobroCliente = libreria.obtenerValorVentas(direccion, Year.of(2018), Month.AUGUST);
+        cobroCliente += libreria.obtenerValorVentas(direccion, Year.of(2018), Month.SEPTEMBER);
+        cobroCliente += libreria.obtenerValorVentas(direccion, Year.of(2018), Month.OCTOBER);
+        float cobroOtroCliente = libreria.obtenerValorVentas(otraDireccion, Year.of(2018), Month.AUGUST);
+        cobroOtroCliente += libreria.obtenerValorVentas(otraDireccion, Year.of(2018), Month.SEPTEMBER);
+        cobroOtroCliente += libreria.obtenerValorVentas(otraDireccion, Year.of(2018), Month.OCTOBER);
 
         // principito: 50 * 0.95 = 47.5
         // cronica (Subscripcion Septiembre): 10 * 0.95 * 30 = 285

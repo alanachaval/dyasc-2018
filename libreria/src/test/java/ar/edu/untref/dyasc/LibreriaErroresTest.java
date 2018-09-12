@@ -61,11 +61,11 @@ public class LibreriaErroresTest {
         libreria.registrarCliente("direccion");
 
         Assertions.assertThrows(ClienteNoRegistradoException.class, () -> {
-            libreria.obtenerCobro("NoEsLaDireccion", Year.of(2018), Month.SEPTEMBER);
+            libreria.obtenerValorVentas("NoEsLaDireccion", Year.of(2018), Month.SEPTEMBER);
         });
 
         Assertions.assertThrows(ClienteNoRegistradoException.class, () -> {
-            libreria.obtenerCobro("NoEsLaDireccion", Year.of(2018));
+            libreria.obtenerValorCompras("NoEsLaDireccion", Year.of(2018));
         });
     }
 }

@@ -47,7 +47,7 @@ public class Libreria {
         cliente.agregarCompra(subscripcion);
     }
 
-    public float obtenerCobro(String direccion, Year anio) throws ClienteNoRegistradoException {
+    public float obtenerValorCompras(String direccion, Year anio) throws ClienteNoRegistradoException {
         Cliente cliente = getCliente(direccion);
         float total = 0.0f;
         for (Compra compra : cliente.getCompras()) {
@@ -58,7 +58,7 @@ public class Libreria {
         return total;
     }
 
-    public float obtenerCobro(String direccion, Year anio, Month mes) throws ClienteNoRegistradoException {
+    public float obtenerValorVentas(String direccion, Year anio, Month mes) throws ClienteNoRegistradoException {
         Cliente cliente = getCliente(direccion);
         float total = 0.0f;
         for (Compra compra : cliente.getCompras()) {
