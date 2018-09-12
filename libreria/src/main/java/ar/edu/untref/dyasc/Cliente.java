@@ -13,7 +13,7 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public List<Compra> getCompras() {
+    public Iterable<Compra> getCompras() {
         return compras;
     }
 
