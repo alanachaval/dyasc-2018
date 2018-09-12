@@ -19,9 +19,9 @@ public class RepositorioDeProductos {
         productos.put(producto.getNombre(), producto);
     }
 
-    public void registrarSubscribible(Subscribible producto) {
-        subscribibles.put(producto.getNombre(), producto);
-        productos.put(producto.getNombre(), producto);
+    public void registrarSubscribible(Subscribible subscribible) {
+        subscribibles.put(subscribible.getNombre(), subscribible);
+        productos.put(subscribible.getNombre(), subscribible);
     }
 
     public Producto getProducto(String nombre) throws ProductoNoRegistradoException {
