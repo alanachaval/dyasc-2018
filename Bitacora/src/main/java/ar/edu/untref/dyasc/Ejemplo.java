@@ -10,7 +10,7 @@ public class Ejemplo {
 
         bitacora.registrarEvento("Finalizando ejecución");
 
-        bitacora.Cerrar();
+        bitacora.close();
     }
 
 }

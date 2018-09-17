@@ -1,6 +1,10 @@
 package ar.edu.untref.dyasc;
 
-public interface Salida {
+import java.io.Closeable;
+import java.io.IOException;
 
-    public void registrarEvento(String mensaje);
+public interface Salida extends Closeable {
+
+    public void registrarEvento(String mensaje) throws IOException;
+
 }

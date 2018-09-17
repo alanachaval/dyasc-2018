@@ -1,32 +1,29 @@
 package ar.edu.untref.dyasc;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.io.Closeable;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bitacora {
+public class Bitacora implements Closeable {
 
     private static Bitacora instancia = new Bitacora();
 
-    private FileWriter streamSalida;
     private List<Salida> salidas;
 
     private Bitacora() {
         salidas = new ArrayList<Salida>();
-        
-        //Class.forName("arg0").newInstance();
-        
-        String nombreArchivo = System.getProperty("DESTINO_BITACORA");
-        if (nombreArchivo != null) {
-            File archivoSalida = new File(nombreArchivo);
-            try {
-                streamSalida = new FileWriter(archivoSalida, true);
-            } catch (IOException e) {
-                e.printStackTrace();
+        String bitacoraDestino = System.getProperty("bitacora.destino");
+        String[] destinos;
+        if (bitacoraDestino != null) {
+            destinos = bitacoraDestino.split(",");
+            for (String destino : destinos) {
+                destino = destino.trim();
+                if (!destino.isEmpty()) {
+                    salidas.add(SalidaFactory.instanciarSalida(destino));
+                }
             }
         }
     }
@@ -40,23 +37,23 @@ public class Bitacora {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         String fechaHora = localDateTime.format(dateTimeFormatter);
         String evento = fechaHora + " " + mensaje;
-        if (streamSalida != null) {
+        for (Salida salida : salidas) {
             try {
-                streamSalida.write(evento + System.lineSeparator());
-                streamSalida.flush();
+                salida.registrarEvento(evento);
             } catch (IOException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-        } else {
-            System.out.println(evento);
         }
     }
 
-    public void Cerrar() {
-        if (streamSalida != null) {
+    @Override
+    public void close() {
+        for (Salida salida : salidas) {
             try {
-                streamSalida.close();
+                salida.close();
             } catch (IOException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
