@@ -2,12 +2,12 @@ package ar.edu.untref.dyasc;
 
 public class SalidaFactory {
 
-    public static Salida instanciarSalida(String clase) {
+    public static Salida instanciarSalida(String destino) {
         Salida salida = null;
-        if (clase.equals("CONSOLA")) {
+        if (destino.equals("CONSOLA")) {
             salida = new SalidaConsola();
         } else {
-            salida = new SalidaArchivo(clase);
+            salida = new SalidaArchivo(destino);
         }
         return salida;
     }
