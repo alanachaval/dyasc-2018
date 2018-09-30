@@ -10,6 +10,7 @@ public class Juego {
 
     public Impacto disparo(int x, int y) {
         if (tablero[x][y]) {
+            tablero[x][y] = false;
             return Impacto.HUNDIDO;
         }
         return Impacto.AGUA;
