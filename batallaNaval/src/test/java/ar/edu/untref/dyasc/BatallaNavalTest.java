@@ -14,4 +14,14 @@ public class BatallaNavalTest {
         Assert.assertEquals(Impacto.AGUA, impacto);
     }
 
+    @Test
+    public void disparoAlBote() {
+        Juego juego = new Juego();
+        
+        juego.agregarBote(0, 0);
+        Impacto impacto = juego.disparo(0, 0);
+        
+        Assert.assertEquals(Impacto.HUNDIDO, impacto);
+    }
+
 }
