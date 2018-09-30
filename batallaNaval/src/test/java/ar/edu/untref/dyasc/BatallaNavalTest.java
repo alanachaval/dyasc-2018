@@ -55,4 +55,17 @@ public class BatallaNavalTest {
 
         Assert.assertEquals(Impacto.IMPACTO, impacto);
     }
+
+    @Test
+    public void hundirBarco() {
+        Juego juego = new Juego();
+
+        juego.agregarBarco(0, 0, true);
+        juego.disparo(0, 0);
+        juego.disparo(1, 0);
+        Impacto impacto = juego.disparo(2, 0);
+
+        Assert.assertEquals(Impacto.HUNDIDO, impacto);
+    }
+
 }
