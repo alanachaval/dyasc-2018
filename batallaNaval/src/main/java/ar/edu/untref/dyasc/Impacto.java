@@ -1,5 +1,5 @@
 package ar.edu.untref.dyasc;
 
 public enum Impacto {
-    AGUA, HUNDIDO, IMPACTO
+    AGUA, HUNDIDO, TOCADO
 }

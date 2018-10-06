@@ -15,7 +15,7 @@ public class BatallaNavalTest {
     }
 
     @Test
-    public void disparoAlBote() {
+    public void hundeAlBoteDeUnDisparo() {
         Juego juego = new Juego();
 
         juego.agregarBote(0, 0);
@@ -36,31 +36,31 @@ public class BatallaNavalTest {
     }
 
     @Test
-    public void disparoAlBarco() {
+    public void tocadoAlDispararAlCrucero() {
         Juego juego = new Juego();
 
-        juego.agregarBarco(0, 0, true);
+        juego.agregarCrucero(0, 0, true);
         Impacto impacto = juego.disparo(0, 0);
 
-        Assert.assertEquals(Impacto.IMPACTO, impacto);
+        Assert.assertEquals(Impacto.TOCADO, impacto);
     }
 
     @Test
-    public void disparoDobleAlBarco() {
+    public void tocadoAlDispararAlCruceroEnLaMismaPosicionDosVeces() {
         Juego juego = new Juego();
 
-        juego.agregarBarco(0, 0, true);
+        juego.agregarCrucero(0, 0, true);
         juego.disparo(0, 0);
         Impacto impacto = juego.disparo(0, 0);
 
-        Assert.assertEquals(Impacto.IMPACTO, impacto);
+        Assert.assertEquals(Impacto.TOCADO, impacto);
     }
 
     @Test
-    public void hundirBarco() {
+    public void hundidoLuegoDeImpactarAlCruceroEnTodasSusPosiciones() {
         Juego juego = new Juego();
 
-        juego.agregarBarco(0, 0, true);
+        juego.agregarCrucero(0, 0, true);
         juego.disparo(0, 0);
         juego.disparo(1, 0);
         Impacto impacto = juego.disparo(2, 0);

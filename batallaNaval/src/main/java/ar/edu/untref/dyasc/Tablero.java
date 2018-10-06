@@ -71,7 +71,7 @@ public class Tablero {
                 return Impacto.HUNDIDO;
             }
         }
-        return Impacto.IMPACTO;
+        return Impacto.TOCADO;
     }
 
     private enum Casillero {

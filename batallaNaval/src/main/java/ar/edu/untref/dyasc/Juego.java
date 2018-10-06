@@ -16,7 +16,7 @@ public class Juego {
         tablero.agregarEmbarcacion(x, y, true, 1);
     }
 
-    public void agregarBarco(int x, int y, boolean horizontal) {
+    public void agregarCrucero(int x, int y, boolean horizontal) {
         tablero.agregarEmbarcacion(x, y, horizontal, 3);
     }
 }
