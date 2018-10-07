@@ -68,4 +68,34 @@ public class BatallaNavalTest {
         Assert.assertEquals(Impacto.HUNDIDO, impacto);
     }
 
+    @Test
+    public void noPermitirAgregarBarcoEnLugarOcupado() {
+        Juego juego = new Juego(3);
+        juego.agregarCrucero(0, 0, true);
+
+        boolean creado = juego.agregarCrucero(0, 0, true);
+
+        Assert.assertFalse(creado);
+    }
+
+    @Test
+    public void permitirAgregarBarcoEnLugarLibre() {
+        Juego juego = new Juego(3);
+        juego.agregarCrucero(0, 0, true);
+
+        boolean creado = juego.agregarCrucero(0, 2, true);
+
+        Assert.assertTrue(creado);
+    }
+
+    @Test
+    public void noPermitirAgregarBarcoAdyacenteAOtro() {
+        Juego juego = new Juego(3);
+        juego.agregarCrucero(0, 0, true);
+
+        boolean creado = juego.agregarCrucero(0, 1, true);
+
+        Assert.assertFalse(creado);
+    }
+
 }
