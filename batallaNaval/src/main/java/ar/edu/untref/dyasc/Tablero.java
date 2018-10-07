@@ -30,6 +30,10 @@ public class Tablero {
      */
     public boolean agregarEmbarcacion(int x, int y, boolean horizontal, int longitud) {
         Contador contador = crearContador(x, y, horizontal);
+        if (x < 0 || y < 0 || (horizontal && x + longitud > casilleros.length)
+                || (!horizontal && y + longitud > casilleros.length)) {
+            return false;
+        }
         for (int i = 0; i < longitud; i++) {
             boolean espacioOcupado = casilleros[contador.getX()][contador.getY()] != Casillero.AGUA;
             boolean espacioSuperiorOcupado = contador.getY() > 0

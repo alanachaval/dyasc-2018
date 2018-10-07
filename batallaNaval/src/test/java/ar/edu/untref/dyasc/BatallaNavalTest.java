@@ -98,4 +98,22 @@ public class BatallaNavalTest {
         Assert.assertFalse(creado);
     }
 
+    @Test
+    public void noPermitirAgregarBarcoFueraDelTablero() {
+        Juego juego = new Juego(3);
+
+        boolean creado = juego.agregarCrucero(1, 0, true);
+
+        Assert.assertFalse(creado);
+    }
+
+    @Test
+    public void noPermitirAgregarBarcoEnPosicionNegativaDelTablero() {
+        Juego juego = new Juego(3);
+
+        boolean creado = juego.agregarCrucero(-1, 0, true);
+
+        Assert.assertFalse(creado);
+    }
+
 }
