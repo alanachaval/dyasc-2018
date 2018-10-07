@@ -7,7 +7,7 @@ public class BatallaNavalTest {
 
     @Test
     public void disparoAlAgua() {
-        Juego juego = new Juego();
+        Juego juego = new Juego(1);
 
         Impacto impacto = juego.disparo(0, 0);
 
@@ -16,7 +16,7 @@ public class BatallaNavalTest {
 
     @Test
     public void hundeAlBoteDeUnDisparo() {
-        Juego juego = new Juego();
+        Juego juego = new Juego(1);
 
         juego.agregarBote(0, 0);
         Impacto impacto = juego.disparo(0, 0);
@@ -26,7 +26,7 @@ public class BatallaNavalTest {
 
     @Test
     public void aguaLuegoDeHundirUnBote() {
-        Juego juego = new Juego();
+        Juego juego = new Juego(1);
 
         juego.agregarBote(0, 0);
         juego.disparo(0, 0);
@@ -37,7 +37,7 @@ public class BatallaNavalTest {
 
     @Test
     public void tocadoAlDispararAlCrucero() {
-        Juego juego = new Juego();
+        Juego juego = new Juego(3);
 
         juego.agregarCrucero(0, 0, true);
         Impacto impacto = juego.disparo(0, 0);
@@ -47,7 +47,7 @@ public class BatallaNavalTest {
 
     @Test
     public void tocadoAlDispararAlCruceroEnLaMismaPosicionDosVeces() {
-        Juego juego = new Juego();
+        Juego juego = new Juego(3);
 
         juego.agregarCrucero(0, 0, true);
         juego.disparo(0, 0);
@@ -58,7 +58,7 @@ public class BatallaNavalTest {
 
     @Test
     public void hundidoLuegoDeImpactarAlCruceroEnTodasSusPosiciones() {
-        Juego juego = new Juego();
+        Juego juego = new Juego(3);
 
         juego.agregarCrucero(0, 0, true);
         juego.disparo(0, 0);

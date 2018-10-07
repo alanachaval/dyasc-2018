@@ -4,8 +4,8 @@ public class Juego {
 
     private Tablero tablero;
 
-    public Juego() {
-        tablero = new Tablero();
+    public Juego(int longitud) {
+        tablero = new Tablero(longitud);
     }
 
     public Impacto disparo(int x, int y) {

@@ -4,8 +4,13 @@ public class Tablero {
 
     private Casillero[][] casilleros;
 
-    public Tablero() {
-        casilleros = new Casillero[3][3];
+    /**
+     * Crea el tablero
+     * 
+     * @param longitud longitud del tablero (cuadrado)
+     */
+    public Tablero(int longitud) {
+        casilleros = new Casillero[longitud][longitud];
         for (int i = 0; i < casilleros.length; i++) {
             for (int j = 0; j < casilleros[0].length; j++) {
                 casilleros[i][j] = Casillero.AGUA;
@@ -13,14 +18,34 @@ public class Tablero {
         }
     }
 
-    public void agregarEmbarcacion(int x, int y, boolean horizontal, int longitud) {
+    /**
+     * Agrega una embarcacion sobre el tablero
+     * 
+     * @param x          : posicion x inicial del barco
+     * @param y          : posicion y inicial del barco
+     * @param horizontal : si el barco continua en sentido horizontal
+     * @param longitud   : cantidad de casilleros que ocupa el barco
+     * @return : si se pudo crear (si es falso significa que esta fuera del tablero
+     *         o adyacente a otro barco)
+     */
+    public boolean agregarEmbarcacion(int x, int y, boolean horizontal, int longitud) {
         Contador contador = crearContador(x, y, horizontal);
+        contador = crearContador(x, y, horizontal);
         for (int i = 0; i < longitud; i++) {
             casilleros[contador.getX()][contador.getY()] = Casillero.OCUPADO;
             contador.incrementar();
         }
+        return true;
     }
 
+    /**
+     * realiza un disparo sobre el tablero
+     * 
+     * @param x : posicion x en el tablero
+     * @param y : posicion y en el tablero
+     * @return AGUA si fallo, TOCADO si impacto pero no hundio un barco y HUNDIDO si
+     *         lo hundio
+     */
     public Impacto disparo(int x, int y) {
         if (casilleros[x][y] == Casillero.AGUA) {
             return Impacto.AGUA;
